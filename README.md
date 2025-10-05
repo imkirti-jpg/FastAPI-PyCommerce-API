@@ -1,93 +1,118 @@
-E-commerce Backend API
+# FastAPI E-Commerce API
 
-Built with Python & FastAPI for High-Performance Applications
+A RESTful API for an e-commerce application built with FastAPI, providing endpoints for product management, user authentication, shopping carts, and more.
 
-📋 Overview
+## Features
 
-This project is a robust backend API designed to power a modern, scalable e-commerce platform. Built using FastAPI and Python, it leverages asynchronous programming for speed and efficiency, allowing it to handle high volumes of concurrent requests typical of busy online stores.
+- **Product Management**: Full CRUD operations for products
+- **Category Management**: Organize products into categories
+- **User Management**: User registration and profile management
+- **Authentication**: Secure user signup, login, and token refresh
+- **Shopping Cart**: Cart functionality for users
+- **Account Management**: User profile and account operations
 
-The API covers all core e-commerce functionality, including product management, user authentication, secure account handling, and end-to-end shopping cart operations. It fully adheres to the OpenAPI 3.0 specification, providing interactive documentation via /docs and a machine-readable contract for seamless frontend integration.
+## API Endpoints
 
-✨ Features
-📦 Product & Catalog Management
+### Products
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET` | `/products/` | Get all products |
+| `POST` | `/products/` | Create a new product |
+| `GET` | `/products/{product_id}` | Get specific product |
+| `PUT` | `/products/{product_id}` | Update product |
+| `DELETE` | `/products/{product_id}` | Delete product |
 
-Products: Full CRUD operations for managing product listings, pricing, stock, descriptions, and metadata.
+### Categories
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET` | `/catergories/` | Get all categories |
+| `POST` | `/catergories/` | Create a new category |
+| `GET` | `/catergories/{category_id}` | Get specific category |
+| `PUT` | `/catergories/{category_id}` | Update category |
+| `DELETE` | `/catergories/{category_id}` | Delete category |
 
-Categories: CRUD operations for organizing products, enabling easy browsing, search, and filtering.
+### Users
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET` | `/users/` | Get all users |
+| `POST` | `/users/` | Create a new user |
+| `GET` | `/users/{user_id}` | Get specific user |
+| `PUT` | `/users/{user_id}` | Update user |
+| `DELETE` | `/users/{user_id}` | Delete user |
 
-👤 User & Authentication
+### Authentication
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `POST` | `/auth/signup` | User registration |
+| `POST` | `/auth/login` | User login |
+| `POST` | `/auth/refresh-token` | Refresh authentication token |
 
-Authentication: Secure, stateless JWT-based system with endpoints for signup, login, and token refresh.
+### Shopping Carts
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET` | `/carts/{cart_id}` | Get cart details |
+| `PUT` | `/carts/{cart_id}` | Update cart |
+| `DELETE` | `/carts/{cart_id}` | Delete cart |
+| `POST` | `/carts/` | Create new cart |
 
-Users: Administrative endpoints for retrieving and managing users.
+### Account Management
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET` | `/accounts/me` | Get current user info |
+| `PUT` | `/accounts/me` | Edit current user info |
+| `DELETE` | `/accounts/me` | Delete current user account |
 
-Accounts: Sensitive endpoints for users to access and update their personal information, including profile updates and account deactivation.
+## Installation
 
-🛒 Shopping Cart
+1. **Clone the repository:**
+```bash
+git clone <repository-url>
+cd <project-directory>
+```
 
-Create, view, update, and delete shopping carts.
+### 1. Create a virtual environment:
 
-Manage cart items (add, remove, update quantities).
-
-Clear cart upon order submission or cancellation, ensuring accurate purchase flow.
-
-🛠️ Technology Stack
-
-Framework: FastAPI
-
-Language: Python 3.11+
-
-Data Validation: Pydantic
-
-Database: SQLite (development) — designed to be DB-agnostic for PostgreSQL or MongoDB in production
-
-Dependency Management: pip / Poetry
-
-🚀 Setup & Installation
-
-Clone the repository
-
-git clone [YOUR_REPO_URL]
-cd [project-name]
-
-
-Create and activate a virtual environment
-
+```bash
 python -m venv venv
-source venv/bin/activate  # macOS/Linux
-# Windows: .\venv\Scripts\activate
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+```
 
+### 1. Install dependencies:
 
-Install dependencies
-
+```bash
 pip install -r requirements.txt
-# OR
-poetry install
+```
 
+### 2. Run the application:
 
-Configure environment variables
-Create a .env file in the root directory:
-
-DATABASE_URL="sqlite:///./sql_app.db"  # Update for production
-SECRET_KEY="your-super-secret-key-for-jwt"
-ALGORITHM="HS256"
-ACCESS_TOKEN_EXPIRE_MINUTES=30
-
-
-Run the server
-
+```bash
 uvicorn main:app --reload
+```
+
+## Usage
+
+The API will be available at http://localhost:8000
+
+· Interactive API documentation: http://localhost:8000/docs
+· Alternative documentation: http://localhost:8000/redoc
 
 
-Server will be accessible at http://127.0.0.1:8000
-.
 
-📖 API Documentation
 
-Interactive Swagger UI is available at:
 
-http://127.0.0.1:8000/docs
+## Requirements
 
-Test all API routes, inspect request/response schemas, and explore security mechanisms directly in the browser.
+The project requires the following dependencies (add to requirements.txt):
 
-📸 Screenshots
+```txt
+fastapi==0.104.1
+uvicorn==0.24.0
+python-multipart==0.0.6
+python-jose==3.3.0
+passlib==1.7.4
+```
+
+License
+
+This project is licensed under the MIT License.
+
