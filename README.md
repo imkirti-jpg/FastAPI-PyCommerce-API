@@ -23,8 +23,6 @@ A RESTful API for an e-commerce application built with FastAPI, providing endpoi
 	- A modern, fast web framework for building APIs with Python 3.7+ based on standard Python type hints.
 - **PostgreSQL:** 
 	- A powerful open-source relational database management system used for data storage.
-- **Supabase:** 
-	- Utilizing Supabase for its real-time database capabilities and other features.
 - **JWT Authentication:** 
 	- Implementing JSON Web Token authentication for secure user authentication.
 - **Pydantic:** 
