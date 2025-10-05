@@ -5,6 +5,7 @@ from sqlalchemy import Column, Integer, String, Float, Boolean, TIMESTAMP, text 
 from sqlalchemy.dialects.postgresql import ARRAY 
 from sqlalchemy.orm import relationship 
 from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy import UniqueConstraint
 
 class User(Base):
     __tablename__ = "users"
@@ -24,6 +25,8 @@ class Cart(Base):
     __tablename__ = "carts"
     id : Mapped[int] = mapped_column(Integer, primary_key=True, nullable=False, unique=True, autoincrement=True)
     user_id : Mapped[int] = mapped_column(Integer, ForeignKey("users.id", ondelete="CASCADE"), nullable=False)
+    __table_args__ = (
+        UniqueConstraint("user_id", name="uq_cart_user")),
     added_at : Mapped[str] = mapped_column(TIMESTAMP(timezone=True), server_default=text("NOW()"), nullable=False)
     total_amount : Mapped[float] = mapped_column(Float, nullable=False)
 

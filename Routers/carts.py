@@ -19,7 +19,7 @@ def get_cart(
     created = CartBase.model_validate(carts, from_attributes=True)
     return CartOut(data=created)
 
-@routers.post("/", status_code=status.HTTP_201_CREATED, response_model=CartOut,dependencies=[Depends(check_admin_role)])
+@routers.post("/", status_code=status.HTTP_201_CREATED, response_model=CartOut)
 def create_cart(
         cart: CartCreate,
         db: Session = Depends(get_db),
@@ -29,7 +29,7 @@ def create_cart(
     return CartOut(data=created)
     
 
-@routers.put("/{cart_id}", status_code=status.HTTP_200_OK, response_model=CartOut, dependencies=[Depends(check_admin_role)])
+@routers.put("/{cart_id}", status_code=status.HTTP_200_OK, response_model=CartOut)
 def update_cart(
         cart_id: int,
         cart: CartUpdate,
@@ -39,7 +39,7 @@ def update_cart(
     updated = CartBase.model_validate(carts, from_attributes=True)
     return CartOut(data=updated)
 
-@routers.delete("/{cart_id}", status_code=status.HTTP_200_OK, response_model=CartOutDelete, dependencies=[Depends(check_admin_role)])
+@routers.delete("/{cart_id}", status_code=status.HTTP_200_OK, response_model=CartOutDelete)
 def delete_cart(
         cart_id: int,
         db: Session = Depends(get_db),

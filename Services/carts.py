@@ -21,6 +21,9 @@ class CartService:
     def create_cart(token, db: Session, cart: CartCreate):
         user_id = get_current_user(token)
         cart_dict = cart.model_dump()
+        existing_cart = db.query(Cart).filter(Cart.user_id == user_id).first()
+        if existing_cart:
+            raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Cart already exists for this user")
 
         cart_items_data = cart_dict.pop("cart_items", [])
         cart_items = []
