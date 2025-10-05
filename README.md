@@ -96,6 +96,8 @@ The API will be available at http://localhost:8000
 · Interactive API documentation: http://localhost:8000/docs
 · Alternative documentation: http://localhost:8000/redoc
 
+## Screenshots
+
 
 
 
