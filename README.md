@@ -4,12 +4,36 @@ A RESTful API for an e-commerce application built with FastAPI, providing endpoi
 
 ## Features
 
-- **Product Management**: Full CRUD operations for products
-- **Category Management**: Organize products into categories
-- **User Management**: User registration and profile management
-- **Authentication**: Secure user signup, login, and token refresh
-- **Shopping Cart**: Cart functionality for users
-- **Account Management**: User profile and account operations
+- **Product Endpoints:**
+	- Comprehensive CRUD operations for managing product details, covering creation, retrieval, updating, and deletion.
+- **User Authentication:**
+	- Implementation of secure user authentication using JWT (JSON Web Token) for robust access control and identity verification.
+- **Cart Management:**
+	- Robust operations for managing shopping carts, empowering users to effortlessly add, remove, or update items in their carts.
+- **Search and Filter:**
+	- Implementation of advanced search and filter functionalities to elevate the product browsing experience, allowing users to find specific information efficiently.
+- **Account Management:**
+	- User-friendly operations for managing user accounts, enabling users to retrieve, update, or delete their account information.
+- **Swagger / FastAPI Integration:**
+	- Seamless integration of Swagger UI or ReDoc for comprehensive API documentation. This ensures developers have clear and accessible documentation to understand and utilize the API effectively.
+
+## Technologies Used
+
+- **FastAPI:** 
+	- A modern, fast web framework for building APIs with Python 3.7+ based on standard Python type hints.
+- **PostgreSQL:** 
+	- A powerful open-source relational database management system used for data storage.
+- **Supabase:** 
+	- Utilizing Supabase for its real-time database capabilities and other features.
+- **JWT Authentication:** 
+	- Implementing JSON Web Token authentication for secure user authentication.
+- **Pydantic:** 
+	- A data validation and settings management library for Python, often used with FastAPI.
+- **Uvicorn:** 
+	- A lightweight ASGI server that serves FastAPI applications. It is used for running FastAPI applications in production.
+- **SQLAlchemy:** 
+	- An SQL toolkit and Object-Relational Mapping (ORM) library for Python, useful for database interactions.
+
 
 ## API Endpoints
 
@@ -97,6 +121,8 @@ The API will be available at http://localhost:8000
 · Alternative documentation: http://localhost:8000/redoc
 
 ## Screenshots
+
+![image]()
 
 
 
