@@ -9,7 +9,7 @@ from models import User
 routers = APIRouter(prefix="/products", tags=["Products"])
 
 # get all products
-@routers.get("/", status_code= status.HTTP_200_OK, response_model=Productsout,dependencies=[Depends(get_current_user)])
+@routers.get("/", status_code= status.HTTP_200_OK, response_model=Productsout)
 def get_all_products(db: Session = Depends(get_db)):
     products = ProductService.get_all_products(db)
     products_data = [
@@ -19,7 +19,7 @@ def get_all_products(db: Session = Depends(get_db)):
     return Productsout(data=products_data)
 
 # get single product
-@routers.get("/{product_id}", status_code=status.HTTP_200_OK, response_model=ProductOut,dependencies=[Depends(get_current_user)])
+@routers.get("/{product_id}", status_code=status.HTTP_200_OK, response_model=ProductOut)
 def get_product(product_id: int, db: Session= Depends(get_db)):
     product = ProductService.get_product(db, product_id)
     if not product:

@@ -27,7 +27,7 @@ def verify_password(plain_password, hashed_password):
     return pwd_context.verify(plain_password, hashed_password)
 
 # Create Access Token
-async def get_user_token(id: int, refresh_token=None):
+def get_user_token(id: int, refresh_token=None):
     payload = {"id": id}
 
     access_token_expiry = timedelta(minutes=settings.access_token_expire_minutes)
@@ -35,7 +35,7 @@ async def get_user_token(id: int, refresh_token=None):
     access_token = create_access_token(payload, access_token_expiry)
 
     if not refresh_token:
-        refresh_token = await create_refresh_token(payload)
+        refresh_token = create_refresh_token(payload)
 
     return TokenResponse(
         access_token=access_token,
@@ -56,7 +56,7 @@ def create_access_token(data: dict, access_token_expiry=None):
 
 
 # Create Refresh Token
-async def create_refresh_token(data):
+def create_refresh_token(data):
     return jwt.encode(data, settings.secret_key, settings.algorithm)
 
 # Get Payload Of Token

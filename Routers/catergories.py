@@ -10,14 +10,14 @@ routers = APIRouter(prefix="/catergories", tags=["Catergories"])
 
 
 # get all catergories
-@routers.get("/", status_code= status.HTTP_200_OK, response_model=Catergoriesout,dependencies=[Depends(get_current_user)])
+@routers.get("/", status_code= status.HTTP_200_OK, response_model=Catergoriesout)
 def get_all_catergories(db: Session = Depends(get_db)):
     catergories = CatergoryService.get_all_catergories(db)
     catergories_data = [CatergoryBase.model_validate(p, from_attributes=True) for p in catergories]
     return Catergoriesout(data=catergories_data)
 
 # get single catergory
-@routers.get("/{catergory_id}", status_code=status.HTTP_200_OK, response_model=CatergoryOut,dependencies=[Depends(get_current_user)])
+@routers.get("/{catergory_id}", status_code=status.HTTP_200_OK, response_model=CatergoryOut)
 def get_catergory(catergory_id: int, db: Session= Depends(get_db)):
     catergory = CatergoryService.get_catergory(db, catergory_id)
     if not catergory:

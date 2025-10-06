@@ -10,17 +10,17 @@ routers = APIRouter(prefix="/auth", tags=["Auth"])
 
 # Login
 @routers.post("/signup", status_code=status.HTTP_200_OK, response_model=UserOut)
-async def UserSignup(user: Signup , db: Session = Depends(get_db)):
-    new_user = await AuthService.signup(user, db)
+def UserSignup(user: Signup , db: Session = Depends(get_db)):
+    new_user = AuthService.signup(user, db)
     return  UserOut(data=new_user)
 
 # Signup
 @routers.post("/login", status_code=status.HTTP_200_OK)
-async def UserLogin(user_credentials: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)):
+def UserLogin(user_credentials: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)):
 
-    return await AuthService.login(user_credentials, db)
+    return AuthService.login(user_credentials, db)
 
 # Refresh Token
 @routers.post("/refresh-token", status_code=status.HTTP_200_OK) 
-async def refresh_token(token: str = Header(), db: Session = Depends(get_db)):
-    return await AuthService.get_refreshed_token(token,db)
+def refresh_token(token: str = Header(), db: Session = Depends(get_db)):
+    return AuthService.get_refreshed_token(token,db)
