@@ -7,6 +7,7 @@ from sqlalchemy.orm import relationship
 from sqlalchemy.orm import Mapped, mapped_column
 from sqlalchemy import UniqueConstraint
 
+
 class User(Base):
     __tablename__ = "users"
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True, unique=True, nullable=False)
@@ -16,7 +17,7 @@ class User(Base):
     full_name: Mapped[str] = mapped_column(String, nullable=False)
     is_active: Mapped[bool] = mapped_column(Boolean, server_default="True", nullable=False)
     created_at: Mapped[str] = mapped_column(TIMESTAMP(timezone=True), server_default=text("NOW()"), nullable=False)
-    role: Mapped[str] = mapped_column(Enum("admin", "user", name="user_roles"), server_default="admin", nullable=False)
+    role: Mapped[str] = mapped_column(Enum("admin", "user", name="user_roles"), default="admin", nullable=False)
 
     # Relationship with carts
     carts: Mapped[list["Cart"]] = relationship("Cart", back_populates="user", cascade="all, delete-orphan")
