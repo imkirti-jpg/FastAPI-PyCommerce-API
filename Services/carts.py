@@ -12,7 +12,7 @@ class CartService:
     @staticmethod
     def get_cart(token ,db: Session):
         user_id = get_current_user(token)  # get the logged-in user's ID
-        cart = db.query(Cart).filter(Cart.user_id == user_id).first()  # fetch single cart
+        cart = db.query(Cart).filter(Cart.user_id == user_id).first() 
         if not cart:
             raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND,
