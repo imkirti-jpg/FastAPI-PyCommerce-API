@@ -51,7 +51,7 @@ def create_access_token(data: dict, access_token_expiry=None):
     expire = datetime.now(timezone.utc) + timedelta(minutes=settings.access_token_expire_minutes)
     payload.update({"exp": expire})
 
-    return jwt.encode(payload, settings.secret_key, settings.algorithm)
+    return jwt.encode(payload, settings.secret_key, algorithm=settings.algorithm)
 
 
 

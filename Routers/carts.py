@@ -12,12 +12,12 @@ auth_scheme = HTTPBearer()
 
 @routers.get("/{cart_id}", status_code=status.HTTP_200_OK, response_model=CartOut)
 def get_cart(
-        cart_id: int,
         db: Session = Depends(get_db),
         token: HTTPAuthorizationCredentials = Depends(auth_scheme)):
-    carts = CartService.get_cart(token, db, cart_id)
-    created = CartBase.model_validate(carts, from_attributes=True)
-    return CartOut(data=created)
+    cart = CartService.get_cart(token, db)
+    validated_cart = CartBase.model_validate(cart, from_attributes=True)  # single cart
+    return CartOut(data=validated_cart)
+
 
 @routers.post("/", status_code=status.HTTP_201_CREATED, response_model=CartOut)
 def create_cart(

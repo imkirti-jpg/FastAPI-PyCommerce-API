@@ -74,7 +74,7 @@ class Product(Base):
     created_at = Column(TIMESTAMP(timezone=True), server_default=text("NOW()"), nullable=False)
 
     # Relationship with category
-    category_id = Column(Integer, ForeignKey("categories.id", ondelete="CASCADE"), nullable=False)
+    category_id = Column(Integer, ForeignKey("categories.id", ondelete="SET DEFAULT"), nullable=False,default=1)
     category = relationship("Catergory", back_populates="products")
 
     # Relationship with cart items
