@@ -27,7 +27,7 @@ def get_user(user_id: int , db: Session= Depends(get_db)):
     return UserOut(data=user_data)
 
 # create user
-@routers.post("/", status_code=status.HTTP_201_CREATED, response_model=UserOut, dependencies=[Depends(check_admin_role)] )
+@routers.post("/", status_code=status.HTTP_201_CREATED, response_model=UserOut )
 def create_user(user: UserCreate , db: Session= Depends(get_db)):
     new_user = UserService.create_user(db, user)
     db.refresh(new_user)

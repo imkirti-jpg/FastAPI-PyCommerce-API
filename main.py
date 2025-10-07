@@ -3,7 +3,7 @@ from fastapi import FastAPI
 from database import Base, engine
 
 
-app = FastAPI()
+app = FastAPI(title="PyCommerce API", version="1.0.0")
 
 
 app.include_router(products.routers)
