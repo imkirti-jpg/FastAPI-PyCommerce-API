@@ -2,6 +2,9 @@
 
 A RESTful API for an e-commerce application built with FastAPI, providing endpoints for product management, user authentication, shopping carts, and more.
 
+## Demo
+https://fastapi-pycommerce-api.onrender.com/docs#/
+
 ## Features
 
 - **Product Endpoints:**
