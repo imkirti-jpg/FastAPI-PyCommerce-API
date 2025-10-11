@@ -6,7 +6,14 @@ from Schemas.users import UserCreate, UserOut, Usersout,  UserUpdate  , UseroutD
 from core.security import check_admin_role
 
 routers= APIRouter(prefix="/users", tags=["Users"])
+from fastapi import Request, APIRouter
 
+router = APIRouter()
+
+@router.get("/debug/headers")
+async def debug_headers(request: Request):
+    # TEMPORARY: only for debugging. remove after use.
+    return {k: v for k, v in request.headers.items()}
 # get all users
 @routers.get("/", status_code=status.HTTP_200_OK, response_model=Usersout, dependencies=[Depends(check_admin_role)])
 def get_all_users(db: Session= Depends(get_db)):
