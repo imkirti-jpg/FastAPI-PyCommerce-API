@@ -3,8 +3,13 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
 import os
+from dotenv import load_dotenv
 
-database_url =  os.getenv("DATABASE_URL", "postgresql://ecommerce_db_b4oh_user:hQgjw6FkluvwalPZyGryZuRU40DbmV39@dpg-d3ig16s9c44c73aovpf0-a.singapore-postgres.render.com/ecommerce_db_b4oh")
+load_dotenv()
+
+database_url =  os.getenv("DATABASE_URL")
+if not database_url:
+    raise ValueError("DATABASE_URL environment variable is not set")
 
 engine = create_engine(database_url)
 

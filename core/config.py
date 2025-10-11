@@ -1,11 +1,15 @@
 from pydantic_settings import BaseSettings
 from dotenv import load_dotenv
 import os
+from pathlib import Path
 
-# Force load .env
-load_dotenv()
-load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), "..", ".env"))
 
+# Load .env first
+env_path = Path('.') / '.env'
+print("ENV exists?", env_path.exists())  # Should print True
+load_dotenv(dotenv_path=env_path)
+
+print("DB_USERNAME:", os.getenv("db_username"))  # Should now print postgres
 
 class Settings(BaseSettings):
     # Database Config
@@ -14,6 +18,7 @@ class Settings(BaseSettings):
     db_hostname: str
     db_port: str
     db_name: str
+    database_url: str 
 
     # JWT Config
     secret_key: str
@@ -23,18 +28,6 @@ class Settings(BaseSettings):
     class Config:
         env_file = ".env"
         case_sensitive = False
-
-
-print("DB_USERNAME:", os.getenv("db_username"))
-import os
-from dotenv import load_dotenv
-from pathlib import Path
-
-env_path = Path('.') / '.env'
-print("ENV exists?", env_path.exists())  # Should print True
-load_dotenv(dotenv_path=env_path)
-
-print("DB_USERNAME:", os.getenv("db_username"))  # Should print postgres
 
 
 
