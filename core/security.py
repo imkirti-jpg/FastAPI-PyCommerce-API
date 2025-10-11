@@ -62,7 +62,7 @@ def create_refresh_token(data):
 # Get Payload Of Token
 def get_token_payload(token):
     try:
-        return jwt.decode(token, settings.secret_key, algorithms=[settings.algorithm])
+        return jwt.decode(token, settings.secret_key, algorithms=settings.algorithm)
     except JWTError:
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
