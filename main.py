@@ -12,3 +12,8 @@ app.include_router(users.routers)
 app.include_router(auth.routers)
 app.include_router(carts.routers)
 app.include_router(accounts.routers)
+
+
+@app.get("/")
+def root():
+    return {"message": "PyCommerce API is running 🚀"}
